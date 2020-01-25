@@ -45,9 +45,9 @@ const UpdateTrack = ({ classes, track }) => {
       const data = new FormData();
       data.append('file', file);
       data.append('resource_type', 'raw');
-      data.append('upload_preset', 'react-tracks');
-      data.append('cloud_name', 'zirelion');
-      const res = await axios.post('https://api.cloudinary.com/v1_1/zirelion/raw/upload', data)
+      data.append('upload_preset', process.env.PRESET);
+      data.append('cloud_name', process.env.CLOUD_NAME);
+      const res = await axios.post(process.env.API_URL, data)
       return res.data.url;
     } catch(err) {
       console.error('Error uploading file', err);
